@@ -22,6 +22,16 @@ type ApiResponse = {
 
 const API_URL = "https://rickandmortyapi.com/api/location";
 
+const cardStyle: React.CSSProperties = {
+    border: "1px solid #ccc",
+    borderRadius: 8,
+    padding: 16,
+    boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+    marginBottom: 16,
+    background: "#fff",
+    maxWidth: 400,
+};
+
 const Lugares: React.FC = () => {
     const [locations, setLocations] = useState<Location[]>([]);
     const [info, setInfo] = useState<ApiResponse["info"] | null>(null);
@@ -39,7 +49,6 @@ const Lugares: React.FC = () => {
                 const data: ApiResponse = await res.json();
                 setLocations(data.results);
                 setInfo(data.info);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (err: any) {
                 setError(err.message || "Erro desconhecido");
             } finally {
@@ -59,19 +68,29 @@ const Lugares: React.FC = () => {
 
     return (
         <div style={{ padding: 24 }}>
-            <h1>Lugares (Rick and Morty)</h1>
+            <h1 style={{ color: "#12B0C9", padding: 10}}>Lugares (Rick and Morty)</h1>
             {loading && <p>Carregando...</p>}
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <ul>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: 24,
+                    justifyContent: "center",
+                    alignItems: "start",
+                    maxWidth: 850,
+                    margin: "0 auto",
+                }}
+            >
                 {locations.map((loc) => (
-                    <li key={loc.id} style={{ marginBottom: 16 }}>
-                        <strong>{loc.name}</strong> <br />
-                        Tipo: {loc.type} <br />
-                        Dimensão: {loc.dimension} <br />
-                        Residentes: {loc.residents.length}
-                    </li>
+                    <div key={loc.id} style={{ ...cardStyle, background: "#f5f5f5",}} >
+                        <h2 style={{ margin: "0 0 8px 0" }}>{loc.name}</h2>
+                        <p><strong>Tipo:</strong> {loc.type}</p>
+                        <p><strong>Dimensão:</strong> {loc.dimension}</p>
+                        <p><strong>Residentes:</strong> {loc.residents.length}</p>
+                    </div>
                 ))}
-            </ul>
+            </div>
             <div style={{ marginTop: 16 }}>
                 <button onClick={handlePrev} disabled={!info?.prev || loading}>
                     Anterior
