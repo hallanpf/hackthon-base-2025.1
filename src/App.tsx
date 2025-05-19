@@ -9,6 +9,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/personagem/:id" element={<Home />} />
         </Routes>
       </BrowserRouter>
   );
