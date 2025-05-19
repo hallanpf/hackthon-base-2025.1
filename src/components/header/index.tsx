@@ -14,10 +14,10 @@ const Header = () => {
           <Button color="inherit" component={RouterLink} to="/personagem">
             Personagens
           </Button>
-          <Button color="inherit">
+          <Button color="inherit" component={RouterLink} to="/lugares">
             Lugares Famosos
           </Button>
-          <Button color="inherit">
+          <Button color="inherit" component={RouterLink} to="/episodios">
             Episódios            
           </Button>
         </Box>
