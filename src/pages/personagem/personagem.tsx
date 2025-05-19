@@ -68,15 +68,47 @@ const BuscaPersonagemForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 };
 
 const Personagem: React.FC = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [personagens, setPersonagens] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [erro, setErro] = useState<string | null>(null);
+
     const handleSearch = (params: { nome: string; status: string; genero: string }) => {
-        // Aqui você pode implementar a lógica de busca
-        console.log('Buscar personagem com:', params);
+        setLoading(true);
+        setErro(null);
+        setPersonagens([]);
+        fetch(`https://rickandmortyapi.com/api/character?name=${params.nome}&status=${params.status}&gender=${params.genero}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Nenhum personagem encontrado.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setPersonagens(data.results || []);
+            })
+            .catch(error => {
+                setErro(error.message);
+            })
+            .finally(() => setLoading(false));
     };
 
     return (
-        <div>
-            <h1>Busca de Personagem</h1>
+        <div style={{display: 'flex', flexDirection:'column', alignItems: 'center', justifyContent: 'center', padding: '40px'}}>
+            <h2 style={{width: '480px', color:'#12B0C9', textAlign:'center', paddingBottom: '20px'}}>Busca de Personagem</h2>
             <BuscaPersonagemForm onSearch={handleSearch} />
+            {loading && <p>Carregando...</p>}
+            {erro && <p style={{ color: 'red' }}>{erro}</p>}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 24 }}>
+                {personagens.map(personagem => (
+                    <div key={personagem.id} style={{ border: '1px solid #ccc', borderRadius: 8, padding: 16, width: 200 }}>
+                        <img src={personagem.image} alt={personagem.name} style={{ width: '100%', borderRadius: 8 }} />
+                        <h3>{personagem.name}</h3>
+                        <p>Status: {personagem.status}</p>
+                        <p>Gênero: {personagem.gender}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
