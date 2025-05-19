@@ -39,6 +39,7 @@ const Lugares: React.FC = () => {
                 const data: ApiResponse = await res.json();
                 setLocations(data.results);
                 setInfo(data.info);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (err: any) {
                 setError(err.message || "Erro desconhecido");
             } finally {

@@ -31,38 +31,39 @@ const BuscaPersonagemForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
     return (
         <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
-            <div>
+            <div style={{color: "#12B0C9", width: '500px', marginBottom: '10px'}}>
                 <label>
-                    Buscar personagem:
+                    <p>Buscar personagem:</p>
                     <input
                         type="text"
                         value={nome}
                         onChange={e => setNome(e.target.value)}
                         placeholder="Nome do personagem"
+                        style={{color: "#12B0C9", width: '500px', marginTop:'5px', padding: '10px 20px' }}
                     />
                 </label>
             </div>
-            <div>
+            <div style={{color: "#12B0C9", width: '500px', marginBottom: '10px'}}>
                 <label>
-                    Status:
-                    <select value={status} onChange={e => setStatus(e.target.value)}>
+                    <p>Status:</p>
+                    <select value={status} onChange={e => setStatus(e.target.value)} style={{color: "#12B0C9", width: '500px', marginTop:'5px', padding: '10px 20px' }}>
                         {statusOptions.map(opt => (
                             <option key={opt.value} value={opt.value}>{opt.label}</option>
                         ))}
                     </select>
                 </label>
             </div>
-            <div>
+            <div style={{color: "#12B0C9", width: '500px', marginBottom: '10px'}}>
                 <label>
-                    Gênero:
-                    <select value={genero} onChange={e => setGenero(e.target.value)}>
+                    <p>Gênero:</p>
+                    <select value={genero} onChange={e => setGenero(e.target.value)} style={{color: "#12B0C9", width: '500px', marginTop:'5px', padding: '10px 20px' }}>
                         {generoOptions.map(opt => (
                             <option key={opt.value} value={opt.value}>{opt.label}</option>
                         ))}
                     </select>
                 </label>
             </div>
-            <button type="submit">Buscar</button>
+            <button type="submit" style={{marginLeft: '160px', padding: '20px 60px', backgroundColor: '#12B0C9', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer'}}>Buscar</button>
         </form>
     );
 };
