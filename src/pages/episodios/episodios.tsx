@@ -56,9 +56,6 @@ const Episodios: React.FC = () => {
                             <li key={ep.id} style={{ marginBottom: 16 }}>
                                 <strong>{ep.episode} - {ep.name}</strong>
                                 <div>Data de exibição: {ep.air_date}</div>
-                                <a href={ep.url} target="_blank" rel="noopener noreferrer">
-                                    Ver detalhes
-                                </a>
                             </li>
                         ))}
                     </ul>
