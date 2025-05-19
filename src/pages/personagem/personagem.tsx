@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import logo from './../../assets/Rick-and-Morty-Shop-logo.png';
 
 interface SearchFormProps {
-    onSearch: (params: { nome: string; status: string; genero: string }) => void;
+    onSearch: (params: { nome: string; status: string; genero: string; }) => void;
 }
 
 const statusOptions = [
@@ -95,21 +96,27 @@ const Personagem: React.FC = () => {
     };
 
     return (
-        <div style={{display: 'flex', flexDirection:'column', alignItems: 'center', justifyContent: 'center', padding: '40px'}}>
-            <h2 style={{width: '480px', color:'#12B0C9', textAlign:'center', paddingBottom: '20px'}}>Busca de Personagem</h2>
+        <div style={{display: 'flex', flexDirection:'column', padding: '40px'}}>
+            <h2 style={{color:'#12B0C9', textAlign:'center', paddingBottom: '20px', marginLeft: '100px'}}>Busca de Personagem</h2>
             <BuscaPersonagemForm onSearch={handleSearch} />
             {loading && <p>Carregando...</p>}
             {erro && <p style={{ color: 'red' }}>{erro}</p>}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 24 }}>
+            <div style={{marginTop: '20px', textAlign: 'left'}}>Resultados</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 24, backgroundColor: 'black', padding: 20 }}>
                 {personagens.map(personagem => (
-                    <div key={personagem.id} style={{ border: '1px solid #ccc', borderRadius: 8, padding: 16, width: 200 }}>
-                        <img src={personagem.image} alt={personagem.name} style={{ width: '100%', borderRadius: 8 }} />
-                        <h3>{personagem.name}</h3>
-                        <p>Status: {personagem.status}</p>
-                        <p>Gênero: {personagem.gender}</p>
+                    <div key={personagem.id} style={{ border: '1px solid #ccc', backgroundColor:'darkgray', borderRadius: 8, padding: 16, width: 400 }}>
+                        <img src={personagem.image} alt={personagem.name} style={{ width: '150px', borderRadius: 8 }} />
+                        <div style={{ marginLeft: 170, marginTop: -150, marginBottom: 30, textAlign: 'left' }}>
+                            <h3>{personagem.name}</h3>
+                            <p style={{marginTop: 10}}>Status</p>
+                            <p>{personagem.status}</p>
+                            <p style={{marginTop: 10}}>Gênero</p>
+                            <p>{personagem.gender}</p>
+                        </div>
                     </div>
                 ))}
             </div>
+            <img src={logo} alt="Rick and Morty Logo" style={{marginLeft:'100px', paddingBottom: '10px' }} />
         </div>
     );
 };
