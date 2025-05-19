@@ -11,7 +11,7 @@ const Header = () => {
         </Box>
 
         <Box sx={{ display: 'flex', gap: '120px' }}>
-          <Button color="inherit">
+          <Button color="inherit" component={RouterLink} to="/personagem">
             Personagens
           </Button>
           <Button color="inherit">
