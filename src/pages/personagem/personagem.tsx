@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './../../assets/Rick-and-Morty-Shop-logo.png';
+// import logo from './../../assets/Rick-and-Morty-Shop-logo.png';
 
 interface SearchFormProps {
     onSearch: (params: { nome: string; status: string; genero: string; }) => void;
@@ -117,7 +117,7 @@ const Personagem: React.FC = () => {
                     </div>
                 ))}
             </div>
-            <img src={logo} alt="Rick and Morty Logo" style={{marginLeft:'100px', paddingBottom: '10px' }} />
+            {/* <img src={logo} alt="Rick and Morty Logo" style={{marginLeft:'100px', paddingBottom: '10px' }} /> */}
         </div>
     );
 };
