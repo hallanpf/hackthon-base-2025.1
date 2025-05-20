@@ -102,7 +102,7 @@ const Personagem: React.FC = () => {
             {loading && <p>Carregando...</p>}
             {erro && <p style={{ color: 'red' }}>{erro}</p>}
             <div style={{marginTop: '20px', textAlign: 'left'}}>Resultados</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 24, backgroundColor: 'black', padding: 20 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 24, padding: 20 }}>
                 {personagens.map(personagem => (
                     <div key={personagem.id} style={{ border: '1px solid #ccc', backgroundColor:'darkgray', borderRadius: 8, padding: 16, width: 400 }}>
                         <img src={personagem.image} alt={personagem.name} style={{ width: '150px', borderRadius: 8 }} />
