@@ -71,6 +71,7 @@ const BuscaPersonagemForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
 const Personagem: React.FC = () => {
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [personagens, setPersonagens] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState<string | null>(null);
